@@ -47,7 +47,7 @@ button{
     function calculateRisk() {
       var score = 0;
 
-      var smoke = document.querySelector('input[name="smoke"]:checked');
+     var smoke = document.querySelector('input[name="smoke"]:checked');
       if (smoke && smoke.value === "yes") score += 3;
 
       var alcohol = document.querySelector('input[name="alcohol"]:checked');
@@ -81,14 +81,34 @@ button{
         result.innerHTML = "Medium Risk!";
       } else {
         result.innerHTML = "Low Risk!";
+      
+    
+      var result = document.getElementById("result");
+      
+      if (score >= 10) {
+        result.innerHTML = "High Risk!";
+        result.style.color = "#D32F2F"; // A strong, alert Red
+      } else if (score >= 5) {
+        result.innerHTML = "Medium Risk!";
+        result.style.color = "#F57C00"; // A warning Orange
+      } else {
+        result.innerHTML = "Low Risk!";
+        result.style.color = "#388E3C"; // A healthy, calming Green
       }
-    }
     </script>
   </head>
   <body>
+    
+
+
+    
     <h1>Heart Risk Assessment</h1>
     <p>Answer the questions honestly to find out your heart risk level.</p>
     <form>
+       <p> What is  your age?</p>
+      <input type="number" name="age" min="1" max="100"
+
+      
       <p>Do you smoke?</p>
       <input type="radio" name="smoke" value="yes"> Yes
       <input type="radio" name="smoke" value="no"> No
