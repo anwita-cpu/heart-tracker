@@ -1,8 +1,150 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Heart Risk Assessment</title>
+  <title>Heart Risk Assessment</title>
+
+  <style>
+   h1{
+       color : red;
+}
+
+body{ 
+     font-family:Arial
+     
+  form{ 
+     background-color: red; 
+     max-width: 600px;
+     margin: 0 auto;
+     padding: 30px;
+     border-radius: 10px;
+
+button{
+  background-color:red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+
+ }
+
+result{
+ text-align:centre
+ font-size:24px
+ font-weight:bold ;
+  color:red ;
+  margin-top:20x;
+}
+
+
+  </style>
+
+  <script>
+
+    function calculateRisk() {
+      var score = 0;
+
+      var smoke = document.querySelector('input[name="smoke"]:checked');
+      if (smoke && smoke.value === "yes") score += 3;
+
+      var alcohol = document.querySelector('input[name="alcohol"]:checked');
+      if (alcohol && alcohol.value === "yes") score += 2;
+
+      var family = document.querySelector('input[name="family_history"]:checked');
+      if (family && family.value === "yes") score += 2;
+
+      var stress = document.querySelector('select[name="stress"]').value;
+      if (stress === "high") score += 2;
+      if (stress === "medium") score += 1;
+
+      var sleep = document.querySelector('select[name="sleep"]').value;
+      if (sleep === "less5") score += 2;
+      if (sleep === "more8") score += 1;
+
+      var chest = document.querySelector('input[name="chest_pain"]:checked');
+      if (chest && chest.value === "yes") score += 3;
+
+      var breath = document.querySelector('input[name="breath"]:checked');
+      if (breath && breath.value === "yes") score += 2;
+
+      var nonveg = document.querySelector('select[name="nonveg"]').value;
+      if (nonveg === "daily") score += 2;
+      if (nonveg === "few_times") score += 1;
+
+      var result = document.getElementById("result");
+      if (score >= 10) {
+        result.innerHTML = "High Risk!";
+      } else if (score >= 5) {
+        result.innerHTML = "Medium Risk!";
+      } else {
+        result.innerHTML = "Low Risk!";
+      }
+    }
+    </script>
   </head>
   <body>
+    <h1>Heart Risk Assessment</h1>
+    <p>Answer the questions honestly to find out your heart risk level.</p>
+    <form>
+      <p>Do you smoke?</p>
+      <input type="radio" name="smoke" value="yes"> Yes
+      <input type="radio" name="smoke" value="no"> No
 
+      <p>Do you drink alcohol?</p>
+      <input type="radio" name="alcohol" value="yes"> Yes
+      <input type="radio" name="alcohol" value="no"> No
+
+      <p>Do you have any family history of heart disease?</p>
+      <input type="radio" name="family_history" value="yes"> Yes
+      <input type="radio" name="family_history" value="no"> No
+
+      <p>How would you rate your stress level?</p>
+      <select name="stress">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <p>Do you exercise regularly?</p>
+      <input type="radio" name="exercise" value="yes"> Yes
+      <input type="radio" name="exercise" value="no"> No
+
+      <p>If yes, how many days per week?</p>
+      <select name="exercise_days">
+        <option value="1">1 day</option>
+        <option value="2">2 days</option>
+        <option value="3">3 days</option>
+        <option value="4">4 days</option>
+        <option value="5">5+ days</option>
+      </select>
+
+      <p>How many hours do you sleep per day?</p>
+      <select name="sleep">
+        <option value="less5">Less than 5 hours</option>
+        <option value="5to6">5-6 hours</option>
+        <option value="7to8">7-8 hours</option>
+        <option value="more8">More than 8 hours</option>
+      </select>
+
+      <p>Do you have any chest pain or discomfort?</p>
+      <input type="radio" name="chest_pain" value="yes"> Yes
+      <input type="radio" name="chest_pain" value="no"> No
+
+      <p>Do you feel out of breath during light activities?</p>
+      <input type="radio" name="breath" value="yes"> Yes
+      <input type="radio" name="breath" value="no"> No
+
+      <p>How often do you eat non vegetarian food?</p>
+      <select name="nonveg">
+        <option value="daily">Daily</option>
+        <option value="few_times">A few times a week</option>
+        <option value="rarely">Rarely</option>
+        <option value="never">Never</option>
+      </select>
+
+      <button type="button" onclick="calculateRisk()">Calculate My Heart Risk</button>
+    </form>
+
+    <div id="result"></div>
   </body>
 </html>
